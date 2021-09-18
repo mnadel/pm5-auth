@@ -7,7 +7,8 @@ async function buildFormBody(code) {
       client_id: id,
       client_secret: secret,
       grant_type: "authorization_code",
-      code: code
+      code: code,
+      redirect_uri: "https://auth.pm5-book.workers.dev/c2"
   }
 
   let body = []
@@ -22,7 +23,7 @@ async function buildFormBody(code) {
 }
 
 async function getAccessToken(code) {
-  const body = buildFormBody(code)
+  const body = await buildFormBody(code)
   console.log(`fetching tokens with: ${body}`)
 
   const response = await fetch("https://log-dev.concept2.com/oauth/access_token", {
@@ -45,7 +46,7 @@ async function handleRequest(request) {
   let command = "hmm, can't find access code :("
   
   if (code) {
-    const tokens = getAccessToken(code)
+    const tokens = await getAccessToken(code)
     console.log(`got tokens: ${JSON.stringify(tokens)}`)
 
     if (tokens.access_token && tokens.refresh_token) {
