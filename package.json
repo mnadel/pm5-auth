@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "pm5-auth",
+  "version": "1.0.0",
+  "description": "A Concpet2 Logbook OAuth2 handler implemented as a Cloudflare Worker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Michael Nadel <mike@nadel.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}

@@ -1,0 +1,12 @@
+name = "pm5-auth"
+type = "javascript"
+
+account_id = "xxx"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-09-18"
+
+kv_namespaces = [ 
+  { binding = "c2", id = "xxx" }
+]
