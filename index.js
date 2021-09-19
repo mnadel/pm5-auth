@@ -4,19 +4,19 @@ async function buildFormBody(code) {
   const secret = await c2.get("client_secret")
 
   const form = {
+      code: code,
       client_id: id,
       client_secret: secret,
       grant_type: "authorization_code",
-      code: code,
       redirect_uri: "https://auth.pm5-book.workers.dev/c2"
   }
 
   let body = []
 
-  for (let property in form) {
-      const k = encodeURIComponent(property)
-      const v = encodeURIComponent(form[property])
-      body.push(k + "=" + v)
+  for (const [key, value] of Object.entries(form)) {
+    const k = encodeURIComponent(key)
+    const v = encodeURIComponent(value)
+    body.push(k + "=" + v)
   }
 
   return body.join("&")
@@ -51,6 +51,8 @@ async function handleRequest(request) {
 
     if (tokens.access_token && tokens.refresh_token) {
       command = `pm5 -access ${tokens.access_token} -refresh ${tokens.refresh_token}`
+    } else {
+      command = `dang, something's not working<br/>${JSON.stringify(tokens)}`
     }
   }
 
