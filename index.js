@@ -2,6 +2,7 @@ async function buildFormBody(code) {
   // lookup via KV
   const id = await c2.get("client_id")
   const secret = await c2.get("client_secret")
+  const host = await c2.get("host")
 
   const form = {
       code: code,
@@ -26,7 +27,7 @@ async function getAccessToken(code) {
   const body = await buildFormBody(code)
   console.log(`fetching tokens with: ${body}`)
 
-  const response = await fetch("https://log-dev.concept2.com/oauth/access_token", {
+  const response = await fetch(`https://${host}/oauth/access_token`, {
       method: "POST",
       headers: {
           "content-type": "application/x-www-form-urlencoded;charset=UTF-8"
