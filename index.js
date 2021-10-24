@@ -53,7 +53,7 @@ async function handleRequest(request) {
     console.log(`got tokens: ${JSON.stringify(tokens)}`)
 
     if (tokens.access_token && tokens.refresh_token) {
-      command = `pm5 --token ${tokens.access_token}:${tokens.refresh_token}`
+      command = `pm5 --auth ${tokens.access_token}:${tokens.refresh_token}`
     } else {
       command = `dang, something's not working<br/>${JSON.stringify(tokens)}`
     }
