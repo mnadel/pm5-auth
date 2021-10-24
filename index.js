@@ -23,7 +23,9 @@ async function buildFormBody(code) {
 }
 
 async function getAccessToken(code) {
+  // lookup via KV
   const host = await c2.get("host")
+
   const body = await buildFormBody(code)
   console.log(`fetching tokens with: ${body}`)
 
