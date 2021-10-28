@@ -53,7 +53,7 @@ async function handleRequest(request) {
     console.log(`got tokens: ${JSON.stringify(tokens)}`)
 
     if (tokens.access_token && tokens.refresh_token) {
-      command = `pm5 --auth <uuid>:${tokens.access_token}:${tokens.refresh_token}`
+      command = `pm5 --auth &lt;uuid&gt;:${tokens.access_token}:${tokens.refresh_token}`
     } else {
       command = `dang, something's not working<br/>${JSON.stringify(tokens)}`
     }
@@ -69,6 +69,7 @@ async function handleRequest(request) {
         <h1>Welcome to <a href="https://github.com/mnadel/pm5">PM5-Book</a>'s OAuth2 Callback</h1>
         <p>Execute the below to add your credentials:</p>
         <tt>${command}</tt>
+        <p>Don't forget to replace <tt>&lt;uuid&gt;</tt> with your UUID.</p>
       </div>
     </body>
   </html>`
@@ -83,3 +84,4 @@ async function handleRequest(request) {
 addEventListener("fetch", event => {
   return event.respondWith(handleRequest(event.request))
 })
+
